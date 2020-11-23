@@ -16,14 +16,13 @@ import java.util.UUID;
 public class JWTUtils {
 
     // 2020/11/15 16:17 生成的Token 过期时间为 1小时
-    // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4NGQ3OGUxNy0wODMzLTQwNTMtYmY5Zi0zNjE3MmZmOTI2MzAiLCJzdWIiOiJ5dXhpYW5nLWVkdSIsImlhdCI6MTYwNTQyODIwMCwiZXhwIjoxNjA1NDMxODAwLCJpZCI6IjIwMTg0MTQxMDkwIiwibmlja05hbWUiOiLku7vph5HljZoiLCJhdmF0YXIiOiJodHRwczovL3d3dy5iYWlkdS5jb20ifQ.AobEMbnIe_5BoZyggCtq1UleP53mwFCLTXckLA50TtM
-
+    // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5ZjY3OTFmMi1mZmJkLTQ0NDAtYWZhNy04NTQ2YTc0N2RjOTciLCJzdWIiOiJ5dXhpYW5nLWVkdSIsImlhdCI6MTYwNTc0NjcwNywiZXhwIjoxNjA1OTc3MTA3LCJpZCI6IjIwMTg0MTQxMDkwIiwibmlja05hbWUiOiLku7vph5HljZoiLCJhdmF0YXIiOiIifQ.pu59KylpGccESwQfgfr9pyENuYo9RYGCzrUqhhzMk1s
     /**
      * 经过 cn.hutool.core.codec.Base64.encode(“yuxiangdesan”); 加密
      */
     public static final String APP_SECRET_KEY = "eXV4aWFuZ2Rlc2Fu";
     // 令牌有效时间 （单位：小时）
-    public static final Integer EXPIRATION_DATE = 1;
+    public static final Integer EXPIRATION_DATE = 1 << 6;
     // 请求头
     public static final String REQUEST_HEADER = "Yuxiang-edu-Token";
 
@@ -39,21 +38,24 @@ public class JWTUtils {
         String decodeStr = Base64.decodeStr(encode);
         System.out.println(decodeStr);*/
 
-        /*String token = JWTUtils.genJwt("20184141090", "任金博", "https://www.baidu.com");
+        String token = JWTUtils.genJwt("20184141091", "任金博", "");
         System.out.println(token);
 
         boolean s = JWTUtils.checkJWT(token);
-        System.out.println(s);*/
+        System.out.println(s);
 
 
-        JwtParser parser = Jwts.parser();
-        parser.setSigningKey(JWTUtils.APP_SECRET_KEY);
-        Claims claims = parser.parseClaimsJws("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmMTE5N2ZlNy1kMjhmLTQ0YTMtOTQzMy1jMTU0NzhlNjgwOGIiLCJzdWIiOiJ5dXhpYW5nLWVkdSIsImlhdCI6MTYwNTUwNTI0MiwiZXhwIjoxNjA1NTA4ODQyLCJpZCI6IjIwMTg0MTQxMDkwIiwibmlja05hbWUiOiLku7vph5HljZoiLCJhdmF0YXIiOiJodHRwczovL3d3dy5iYWlkdS5jb20ifQ.TlyFICgINFr_KENNuPGf8jesdk_-ZPpmzkvbMa9-Bww")
-        .getBody();
-
-        JwtInfo jwtInfo = new JwtInfo(claims.get("id").toString(), claims.get("nickName").toString(), claims.get("avatar").toString());
-
-        System.out.println(jwtInfo);
+//        JwtParser parser = Jwts.parser();
+//        parser.setSigningKey(JWTUtils.APP_SECRET_KEY);
+//        Claims claims = parser.parseClaimsJws("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmMTE5N2ZlNy1kMjhmLTQ0YTMtOTQzMy1jMTU0NzhlNjgwOGIiLCJzdWIiOiJ5dXhpYW5nLWVkdSIsImlhdCI6MTYwNTUwNTI0MiwiZXhwIjoxNjA1NTA4ODQyLCJpZCI6IjIwMTg0MTQxMDkwIiwibmlja05hbWUiOiLku7vph5HljZoiLCJhdmF0YXIiOiJodHRwczovL3d3dy5iYWlkdS5jb20ifQ.TlyFICgINFr_KENNuPGf8jesdk_-ZPpmzkvbMa9-Bww")
+//        .getBody();
+//
+//        JwtInfo jwtInfo = new JwtInfo(claims.get("id").toString(), claims.get("nickName").toString(), claims.get("avatar").toString());
+//
+//        System.out.println(jwtInfo);
+//        String originalFilename = "fasdffsd.png";
+//        String file = originalFilename.substring(originalFilename.lastIndexOf("."));
+//        System.out.println(IdUtil.fastSimpleUUID() + file);
 
     }
 

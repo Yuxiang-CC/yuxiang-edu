@@ -1,0 +1,7 @@
+server:
+  port: 9640
+spring:
+  servlet:
+    multipart:
+      max-file-size: 4MB # 单个文件大小
+      max-request-size: 20MB # 单次上传大小

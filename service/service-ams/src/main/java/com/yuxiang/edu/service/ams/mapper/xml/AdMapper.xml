@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuxiang.edu.service.ams.mapper.AdMapper">
+
+    <select id="selectPageByQueryWrapper" resultType="com.yuxiang.edu.service.ams.entity.Ad">
+        SELECT
+          a.id,
+          a.title,
+          a.color,
+          a.sort,
+          a.image_url as imageUrl,
+          a.link_url as linkUrl,
+          a.type_id AS typeId
+        FROM ams_ad a
+        ${ew.customSqlSegment}
+    </select>
+</mapper>

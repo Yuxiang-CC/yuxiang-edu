@@ -1,0 +1,28 @@
+server:
+  port: 9690
+spring:
+  servlet:
+    multipart:
+      max-file-size: 20MB # 单个文件大小
+      max-request-size: 100MB # 单次上传大小
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/yuxiang_edu_vod?useUnicode=true&characterEncoding=UTF8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: Ren666665
+  redis:
+    host: localhost
+    port: 6379
+    database: 0
+    lettuce: # 密码
+      pool:
+        max-active: 10
+        max-wait: -1
+        max-idle: 2 #最大空闲连接数
+        min-idle: 0 #最小空闲连接数
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:com/yuxiang/edu/service/vod/mapper/xml/*.xml

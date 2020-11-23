@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuxiang.edu.service.core.mapper.CourseMapper">
+
+    <select id="selectWebCourseVOById" parameterType="String" resultType="com.yuxiang.edu.service.core.entity.vo.WebCourseVO">
+        SELECT
+        c.id,
+        c.title,
+        c.cover,
+        CONVERT(c.price, DECIMAL(8,2)) AS price,
+        c.lesson_num AS lessonNum,
+        c.buy_count AS buyCount,
+        c.view_count AS viewCount,
+        cd.description,
+
+        t.id AS teacherId,
+        t.name AS teacherName,
+        t.intro,
+        t.avatar,
+
+        s1.id AS subjectLevelOneId,
+        s1.title AS subjectLevelOne,
+        s2.id AS subjectLevelTwoId,
+        s2.title AS subjectLevelTwo
+
+        FROM
+        core_course c
+        LEFT JOIN core_course_description cd ON c.id = cd.id
+        LEFT JOIN core_teacher t ON c.teacher_id = t.id
+        LEFT JOIN core_subject s1 ON c.subject_parent_id = s1.id
+        LEFT JOIN core_subject s2 ON c.subject_id = s2.id
+        WHERE
+        c.id = #{courseId}
+    </select>
+    <select id="selectCourseDTOById" parameterType="string" resultType="com.yuxiang.edu.service.base.dto.CourseDTO">
+        SELECT
+        c.id as id,
+        c.title as title,
+        c.cover as cover,
+        CONVERT(c.price, DECIMAL(8,2)) AS price,
+        t.name as teacherName
+        FROM
+        core_course c
+        LEFT JOIN core_teacher t ON c.teacher_id = t.id
+        WHERE
+        c.id = #{courseId}
+    </select>
+
+    <sql id="tables">
+        core_course c
+        left join core_teacher t on c.teacher_id = t.id
+        left join core_subject s1 on c.subject_parent_id = s1.id
+        left join core_subject s2 on c.subject_id = s2.id
+    </sql>
+
+    <select id="selectPageByCourseQueryVO" resultType="com.yuxiang.edu.service.core.entity.vo.CourseVO">
+        select
+        c.id, c.title,
+        c.lesson_num as lessonNum,
+        c.price, c.cover,
+        c.buy_count as buyCount,
+        c.view_count as viewCount,
+        c.status,
+        c.gmt_create as gmtCreate,
+        t.name as teacherName,
+        s1.title as subjectParentTitle,
+        s2.title as subjectTitle
+        from
+        <include refid="tables" />
+        ${ew.customSqlSegment}
+    </select>
+
+    <select id="selectCoursePublishById" parameterType="String" resultType="com.yuxiang.edu.service.core.entity.vo.CoursePublishVO">
+        select
+        c.id, c.title, c.lesson_num as lessonNum, c.price,
+        c.cover, c.status,t.name as teacherName, s1.title as subjectParentTitle, s2.title as subjectTitle
+
+        from
+        <include refid="tables" />
+        where
+        c.id = #{courseId}
+    </select>
+</mapper>

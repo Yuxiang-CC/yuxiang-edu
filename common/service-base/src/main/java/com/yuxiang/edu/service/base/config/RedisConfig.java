@@ -1,9 +1,6 @@
 package com.yuxiang.edu.service.base.config;
 
 import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
@@ -19,8 +16,7 @@ import java.time.Duration;
  * @Author: yuxiang
  * @Date: 2020/11/16 15:22
  */
-@Configuration
-@EnableCaching
+
 public class RedisConfig {
 
     /* 不需要 */
@@ -31,7 +27,7 @@ public class RedisConfig {
         return lettuceConnectionFactory;
     }*/
 
-    @Bean
+//    @Bean
     public RedisTemplate<String, Serializable> redisTemplate(LettuceConnectionFactory redisConnectionFactory ){
 
         RedisTemplate<String, Serializable> redisTemplate = new RedisTemplate<>();
@@ -41,7 +37,7 @@ public class RedisConfig {
         return redisTemplate;
     }
 
-    @Bean
+//    @Bean
     public CacheManager cacheManager(LettuceConnectionFactory redisConnectionFactory ) {
 
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()

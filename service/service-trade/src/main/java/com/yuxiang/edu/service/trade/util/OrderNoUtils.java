@@ -1,0 +1,35 @@
+package com.yuxiang.edu.service.trade.util;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
+
+/**
+ * 订单号工具类
+ *
+ * @author qy
+ * @since 1.0
+ */
+public class OrderNoUtils {
+
+    /**
+     * 获取订单号-长度为17个字符
+     * @return
+     */
+    public static String getOrderNo() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        String newDate = sdf.format(new Date());
+        String result = "";
+        Random random = new Random();
+        for (int i = 0; i < 3; i++) {
+            result += random.nextInt(10);
+        }
+        System.out.println(result);
+        return newDate + result;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(com.yuxiang.edu.service.trade.util.OrderNoUtils.getOrderNo());
+    }
+
+}

@@ -1,0 +1,21 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: service-oss
+  cloud:
+    nacos:
+      server-addr: 182.92.227.211:8848
+      discovery:
+        namespace: 9e15a66b-a196-4dfa-9a29-0ef71479613c
+        group: service
+        username: yuxiang
+        password: yuxiang
+      config:
+        file-extension: yml
+        namespace: 9e15a66b-a196-4dfa-9a29-0ef71479613c
+        username: yuxiang
+        password: yuxiang
+        group: service
+        context-path: /nacos
+

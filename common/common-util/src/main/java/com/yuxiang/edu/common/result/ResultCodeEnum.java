@@ -23,10 +23,31 @@ public enum ResultCodeEnum {
     MAIL_SEND_ERROR(false, 41204, "邮件发送失败"),
 
 
+    FILE_UPLOAD_ERROR(false, 41301, "文件上传失败"),
+
+    VIDEO_UPLOAD_ALIYUN_ERROR(false, 41401, "视频上传至阿里云失败"),
+    VIDEO_UPLOAD_TOMCAT_ERROR(false, 41402, "视频上传至业务服务器失败"),
+    VIDEO_DELETE_ALIYUN_ERROR(false, 41403, "阿里云视频文件删除失败"),
+    FETCH_VIDEO_URL_ERROR(false, 41404, "获取播放地址失败"),
+    FETCH_VIDEO_PLAYAUTH_ERROR(false, 41405, "获取播放凭证失败"),
+
+
+    LIVE_PLAY_ERROR(false, 41501, "开启直播间失败，请联系管理员"),
+
+
+    COURSE_NOT_EXIST(false, 41601, "课程不存在"),
+
+    EXCEL_DATA_IMPORT_ERROR(false, 41701, "Excel表格导入失败"),
+
+    PARAM_ERROR(false, 41801, "参数错误"),
+
     TOKEN_ERROR(false, 42101, "token error"),
     TOKEN_EXPIRED(false, 42102, "token 过期"),
+    TOKEN_AUTHENTICATION(false, 42222, "未登录"),
+    TOKEN_USERINFO_ERROR(false, 42333, "token解析用户信息失败"),
 
-    PASSWORD_ERROR(false, 42102, "password error")
+    PASSWORD_ERROR(false, 42102, "password error"),
+
 
     ;
 

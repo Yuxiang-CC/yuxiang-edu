@@ -149,10 +149,10 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
                     if (member == null) {
                         // 如果为空则表示用户是第一次登录注册，则将用户信息保存
                         member = new Member();
-                        // TODO 自动生成昵称、密码、头像
+                        // 自动生成昵称、密码、头像 【密码为手机号】
                         member.setMobile(loginVO.getMobile());
                         member.setNickname(NicknameUtils.getNickname());
-//                        member.setPassword("");
+                        member.setPassword(loginVO.getMobile());
                         baseMapper.insert(member);
                         return generateToken(member);
                     } else {

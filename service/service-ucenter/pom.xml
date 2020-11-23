@@ -12,7 +12,6 @@
     <artifactId>service-ucenter</artifactId>
 
 
-
     <build>
         <!-- 此配置会让maven在打包是，将java下的xml文件也进行打包 -->
         <resources>
