@@ -13,8 +13,7 @@ public class RegisterVO implements Serializable {
 
     private static final long serialVersionUID = 3966986395282320372L;
     private String nickName;
-    private String mobile;
-    private String mail;
+    private String account;
     private String password;
     private String code;
 

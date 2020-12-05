@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
  * @Author: yuxiang
  * @Date: 2020/11/19 16:16
  */
-@CrossOrigin
+
 @Api(description = "管理员登录控制类")
 @RestController
 @RequestMapping("/admin/core")

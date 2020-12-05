@@ -11,7 +11,12 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -21,7 +26,6 @@ import org.springframework.web.bind.annotation.*;
  * @author yuxiang
  * @since 2020-11-19
  */
-@CrossOrigin
 @Api(description = "讲师控制类")
 @RestController
 @RequestMapping("/api/core/teacher")
@@ -44,9 +48,9 @@ public class TeacherController {
     @GetMapping("/get/{id}")
     public R getById(@ApiParam("讲师ID") @PathVariable("id") String id) {
 
-        Teacher teacher = teacherService.getById(id);
-        if (teacher != null) {
-            return R.ok().data("teacher", teacher);
+        Map<String, Object> teacherInfo = teacherService.selectTeacherInfoById(id);
+        if (teacherInfo != null) {
+            return R.ok().data(teacherInfo);
         }
 
         return R.error().message("数据不存在");
@@ -64,6 +68,18 @@ public class TeacherController {
 
         return R.ok().data("rows", pageModelList.getRecords())
                 .data("total", pageModelList.getTotal());
+    }
+
+    @ApiOperation("获取讲师信息简介")
+    @GetMapping("/get-simple/{id}")
+    public R getSimpleById(@ApiParam("讲师ID") @PathVariable("id") String id) {
+
+        Teacher teacher = teacherService.getById(id);
+        if (teacher != null) {
+            return R.ok().data("teacher", teacher);
+        }
+
+        return R.error().message("数据不存在");
     }
 }
 

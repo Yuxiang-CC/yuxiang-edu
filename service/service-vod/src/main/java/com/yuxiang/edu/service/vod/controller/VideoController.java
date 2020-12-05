@@ -22,7 +22,6 @@ import java.util.Map;
  * @Author: yuxiang
  * @Date: 2020/11/17 16:13
  */
-@CrossOrigin
 @RestController
 @Api(description = "阿里云视频点播管理")
 @RequestMapping("/api/vod/video")

@@ -11,6 +11,15 @@
 
     <artifactId>service-trade</artifactId>
 
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/com.alipay.sdk/alipay-sdk-java -->
+        <dependency>
+            <groupId>com.alipay.sdk</groupId>
+            <artifactId>alipay-sdk-java</artifactId>
+            <version>4.10.170.ALL</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <!-- 此配置会让maven在打包是，将java下的xml文件也进行打包 -->
         <resources>

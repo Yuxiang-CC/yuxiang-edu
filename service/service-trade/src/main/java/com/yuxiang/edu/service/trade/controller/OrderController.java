@@ -13,9 +13,11 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * <p>
@@ -25,9 +27,8 @@ import javax.servlet.http.HttpServletRequest;
  * @author yuxiang
  * @since 2020-11-22
  */
-@CrossOrigin
-@Api(description = "课程章节管理控制器")
-@RestController
+@Api(description = "订单管理控制器")
+@Controller
 @RequestMapping("/api/trade/order")
 @Slf4j
 public class OrderController {
@@ -37,7 +38,8 @@ public class OrderController {
 
 
     @ApiOperation("新增订单")
-    @PostMapping("/auth/save/{courseId}")
+    @ResponseBody
+    @PostMapping("/auth/create/{courseId}")
     public R save(@PathVariable("courseId") String courseId, HttpServletRequest request) {
 
         JwtInfo infoFromJWT = JWTUtils.getInfoFromJWT(request);
@@ -51,8 +53,10 @@ public class OrderController {
     }
 
     @ApiOperation("根据订单ID获取订单信息")
+    @ResponseBody
     @GetMapping("/auth/get/{orderId}")
     public R get(@ApiParam("订单ID") @PathVariable("orderId") String orderId, HttpServletRequest request) {
+
         JwtInfo infoFromJWT = JWTUtils.getInfoFromJWT(request);
         Order order = orderService.getOrderById(orderId, infoFromJWT.getId());
         return R.ok().data("item", order);
@@ -60,12 +64,41 @@ public class OrderController {
 
 
     @ApiOperation("判断课程是否购买")
+    @ResponseBody
     @GetMapping("/auth/is-buy/{courseId}")
     public R isBuy(@ApiParam("订单ID") @PathVariable("courseId") String courseId, HttpServletRequest request) {
+
         JwtInfo infoFromJWT = JWTUtils.getInfoFromJWT(request);
         boolean isBuy = orderService.isBuyByCourseId(courseId, infoFromJWT.getId());
         return R.ok().data("isBuy", isBuy);
     }
+
+    @ApiOperation("查询用户订单")
+    @ResponseBody
+    @GetMapping("/auth/list")
+    public R getList(HttpServletRequest request) {
+
+        JwtInfo infoFromJWT = JWTUtils.getInfoFromJWT(request);
+        List<Order> orders =  orderService.getListByMemberId(infoFromJWT.getId());
+        return R.ok().data("items", orders);
+    }
+
+    @ApiOperation("删除订单")
+    @ResponseBody
+    @DeleteMapping("/auth/remove/{orderId}")
+    public R deleteOrder(@ApiParam("orderId") @PathVariable("orderId") String orderId ,
+                         HttpServletRequest request) {
+
+        JwtInfo infoFromJWT = JWTUtils.getInfoFromJWT(request);
+        boolean result = orderService.removeById(orderId, infoFromJWT.getId());
+        if (result) {
+            return R.ok().message("删除成功");
+        } else {
+            return R.error().message("数据不存在");
+        }
+
+    }
+
 
 }
 

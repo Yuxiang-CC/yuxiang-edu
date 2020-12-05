@@ -80,4 +80,23 @@
         where
         c.id = #{courseId}
     </select>
+    <select id="selectCourseCollectVOList" resultType="com.yuxiang.edu.service.core.entity.vo.CourseCollectVO">
+        SELECT
+            c.id,
+            c.title,
+            c.price,
+            c.cover,
+            cc.gmt_create,
+            t.name as teacherName
+        FROM
+            core_course_collect cc
+        LEFT JOIN core_course c ON cc.course_id = c.id
+        LEFT JOIN core_teacher t ON c.teacher_id = t.id
+        WHERE
+            cc.course_id in
+        <foreach collection="collects" item="courseId" open="(" close=")" index="i" separator=",">
+            #{courseId}
+        </foreach>
+
+    </select>
 </mapper>

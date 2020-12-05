@@ -8,7 +8,6 @@ import com.yuxiang.edu.service.vod.service.LiveCategoryService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +22,6 @@ import java.util.List;
  * @author yuxiang
  * @since 2020-11-18
  */
-@CrossOrigin
 @Api(description = "直播分类控制类")
 @RestController
 @RequestMapping("/api/vod/live-category")
@@ -48,6 +46,7 @@ public class LiveCategoryController {
 
         return R.ok().data("items", categorys);
     }
+
 
 }
 

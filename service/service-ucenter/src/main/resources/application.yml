@@ -1,5 +1,5 @@
 server:
-  port: 9680
+  port: 9999
 spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource

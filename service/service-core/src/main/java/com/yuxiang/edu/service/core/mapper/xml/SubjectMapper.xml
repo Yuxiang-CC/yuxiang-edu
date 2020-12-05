@@ -16,4 +16,10 @@
     <select id="selectNestedSByParentId" parameterType="String" resultMap="nestedSubjectMap">
         select id, title, sort from core_subject where parent_id = #{parentId}
     </select>
+    <select id="selectExportData" resultType="com.yuxiang.edu.service.core.entity.Subject">
+        SELECT
+        id,parent_id,title
+        FROM
+        core_subject
+    </select>
 </mapper>

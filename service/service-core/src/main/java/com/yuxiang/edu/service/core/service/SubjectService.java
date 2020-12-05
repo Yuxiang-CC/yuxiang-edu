@@ -2,6 +2,7 @@ package com.yuxiang.edu.service.core.service;
 
 import com.yuxiang.edu.service.core.entity.Subject;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.yuxiang.edu.service.core.entity.excel.DownLoadSubjectData;
 import com.yuxiang.edu.service.core.entity.vo.SubjectVO;
 
 import java.io.InputStream;
@@ -28,4 +29,10 @@ public interface SubjectService extends IService<Subject> {
      * @return
      */
     List<SubjectVO> nestedList();
+
+    /**
+     * 获取导出课程分类的数据信息
+     * @return
+     */
+    List<DownLoadSubjectData> getExportData();
 }

@@ -9,7 +9,9 @@ public enum ResultCodeEnum {
 
 
     UNKNOWN_REASON(false, 40000, "未知错误"),
-
+    ACCOUNT_IS_NULL(false, 40001, "账号为空"),
+    ACCOUNT_ERROR(false, 40002, "账号格式错误"),
+    DATA_NOT_FOUND(false, 40003, "数据不存在"),
 
     MOBILE_REGISTER_ERROR(false, 41101, "请填写手机号码"),
     MOBILE_CODE_ERROR(false, 41102, "手机验证码错误"),
@@ -41,12 +43,17 @@ public enum ResultCodeEnum {
 
     PARAM_ERROR(false, 41801, "参数错误"),
 
+    ALIPAY_PARAME_ERROR(false, 41901, "支付参数错误"),
+    ALIPAY_CALL_ERROR(false, 41901, "调用支付错误"),
+
     TOKEN_ERROR(false, 42101, "token error"),
     TOKEN_EXPIRED(false, 42102, "token 过期"),
+    LOGIN_ERROR(false, 42103, "登录失败"),
     TOKEN_AUTHENTICATION(false, 42222, "未登录"),
-    TOKEN_USERINFO_ERROR(false, 42333, "token解析用户信息失败"),
+    TOKEN_USER_INFO_ERROR(false, 42333, "token解析用户信息失败"),
 
-    PASSWORD_ERROR(false, 42102, "password error"),
+
+    PASSWORD_ERROR(false, 42102, "账号或密码错误"),
 
 
     ;

@@ -2,6 +2,7 @@ package com.yuxiang.edu.service.vod.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yuxiang.edu.service.vod.entity.LiveCategory;
+import com.yuxiang.edu.service.vod.entity.excel.DownLoadLiveCategorytData;
 import com.yuxiang.edu.service.vod.entity.vo.LiveCategoryVO;
 
 import java.io.InputStream;
@@ -34,4 +35,10 @@ public interface LiveCategoryService extends IService<LiveCategory> {
      * @param inputStream
      */
     void batchImport(InputStream inputStream);
+
+    /**
+     * 导出直播分类列表为Excel表格
+     * @return
+     */
+    List<DownLoadLiveCategorytData> getExportData();
 }

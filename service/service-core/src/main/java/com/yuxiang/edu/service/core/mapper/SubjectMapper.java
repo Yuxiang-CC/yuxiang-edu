@@ -1,7 +1,7 @@
 package com.yuxiang.edu.service.core.mapper;
 
-import com.yuxiang.edu.service.core.entity.Subject;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.yuxiang.edu.service.core.entity.Subject;
 import com.yuxiang.edu.service.core.entity.vo.SubjectVO;
 import org.apache.ibatis.annotations.Param;
 
@@ -23,4 +23,10 @@ public interface SubjectMapper extends BaseMapper<Subject> {
      * @return
      */
     List<SubjectVO> selectNestedSByParentId(@Param("parentId") String parentId);
+
+    /**
+     * 获取导出数据的内容
+     * @return
+     */
+    List<Subject> selectExportData();
 }

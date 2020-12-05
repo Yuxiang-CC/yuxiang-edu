@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @Author: yuxiang
  * @Date: 2020/11/22 15:02
  */
-@FeignClient(value = "service-edu", fallback = CoreCourseServiceCallback.class)
+@FeignClient(value = "service-core", fallback = CoreCourseServiceCallback.class)
 public interface CoreCourseService {
 
-    @GetMapping("/api/edu/course/inner/get-course-dto/{courseId}")
+    @GetMapping("/api/core/course/inner/course-dto/{courseId}")
     CourseDTO getCourseDTOById(@PathVariable("courseId") String courseId);
 }

@@ -58,12 +58,12 @@ public class LiveInfoServiceImpl extends ServiceImpl<LiveInfoMapper, LiveInfo> i
         redisTemplate.opsForHash().put(VodConstant.LIVE_CACHE_PREFIX + liveInfo.getTid(), VodConstant.INFO, liveInfo);
 
         // 将直播房间号，按分类存入缓存，以便用于查询
-        redisTemplate.opsForZSet().add(VodConstant.LIVE_CATEGORY_PREFIX + liveInfo.getCategoryId(), liveInfo.getTid(), 1 );
+        redisTemplate.opsForZSet().add(VodConstant.LIVE_CATEGORY_PREFIX  + liveInfo.getCategoryId(), liveInfo.getTid(), 1 );
 
-        // TODO 开启直播间聊天室
+        // 插入推荐列表
+        redisTemplate.opsForZSet().add(VodConstant.LIVE_RECOMMEND, liveInfo.getTid(), 1);
 
         // 4. 将推流地址返回
-
         return pushDomain;
     }
 }

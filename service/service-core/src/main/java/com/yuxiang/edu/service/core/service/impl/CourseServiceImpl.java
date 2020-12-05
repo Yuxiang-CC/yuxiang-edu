@@ -107,7 +107,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         return baseMapper.selectCourseDTOById(courseId);
     }
 
-    @Cacheable(value = "hot", key = "'course'")
+    @Cacheable(value = "hot:index", key = "'course'")
     @Override
     public List<Course> selectHotCourse() {
         QueryWrapper<Course> queryWrapper = new QueryWrapper<>();

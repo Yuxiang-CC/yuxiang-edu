@@ -13,6 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(value = "service-ucenter", fallback = UcenterMemberServiceCallback.class)
 public interface UcenterMemberService {
 
-    @GetMapping("/api/ucenter/member/inner/get-member-dto/{memberId}")
+    @GetMapping("/api/ucenter/member/inner/member-dto/{memberId}")
     MemberDTO getMemberDTOById(@PathVariable("memberId") String memberId);
 }

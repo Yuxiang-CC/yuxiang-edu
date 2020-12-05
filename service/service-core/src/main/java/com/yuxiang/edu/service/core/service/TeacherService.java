@@ -45,4 +45,11 @@ public interface TeacherService extends IService<Teacher> {
      * @return
      */
     List<Teacher> selectHotTeacher();
+
+    /**
+     * 根据讲师ID查询讲师信息和发布的课程
+     * @param id
+     * @return
+     */
+    Map<String, Object> selectTeacherInfoById(String id);
 }

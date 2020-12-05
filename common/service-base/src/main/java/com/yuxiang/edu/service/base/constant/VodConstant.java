@@ -73,6 +73,12 @@ public class VodConstant {
     /**
      * 直播分类一级标题的统一父节点
      */
-    public static final String LIVA_CATEGORY_ONE_LEVEL = "0";
+    public static final String LIVE_CATEGORY_ONE_LEVEL = "0";
+
+
+    /**
+     * 直播间成员信息前缀
+     */
+    public static final String LIVE_MEMBERS_INFO = "live:members:";
 
 }

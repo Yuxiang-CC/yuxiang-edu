@@ -37,6 +37,7 @@ public class R {
         return r;
     }
 
+
     public static R error(){
         R r = new R();
         r.setSuccess(ResultCodeEnum.UNKNOWN_REASON.getSuccess());

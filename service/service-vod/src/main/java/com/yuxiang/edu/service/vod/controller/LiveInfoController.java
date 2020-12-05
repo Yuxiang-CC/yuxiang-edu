@@ -31,7 +31,6 @@ import java.util.Set;
  * @author yuxiang
  * @since 2020-11-18
  */
-@CrossOrigin
 @Api(description = "视频直播管理控制类")
 @RestController
 @RequestMapping("/api/vod/live")
@@ -91,30 +90,11 @@ public class LiveInfoController {
         return R.ok().data("pushUrl", pushUrl);
     }
 
-    @ApiOperation("观看直播，获取直播间拉流地址")
-    @GetMapping("/live/{liveId}")
-    public R getLive(@ApiParam("直播间ID") @PathVariable("liveId") String liveId) {
-
-        // 获取直播间播流地址
-        List<String> filedList = new ArrayList<>();
-        filedList.add(VodConstant.RMTP);
-        filedList.add(VodConstant.M3U8);
-        filedList.add(VodConstant.FLV);
-        List list = redisTemplate.opsForHash().multiGet(VodConstant.LIVE_CACHE_PREFIX + liveId, filedList);
-
-        // TODO 【需要优化】寻找直播间，获取其分类ID，并将直播间人数增加
-        LiveInfo liveInfo = (LiveInfo) redisTemplate.opsForHash().get(VodConstant.LIVE_CACHE_PREFIX + liveId, VodConstant.INFO);
-
-        redisTemplate.opsForZSet().incrementScore(VodConstant.LIVE_CATEGORY_PREFIX + liveInfo.getCategoryId(), liveId, 1);
-
-        return R.ok().data("pullUrl", list);
-    }
-
     @ApiOperation("退出直播间")
     @GetMapping("/auth/quit-live/{liveId}")
     public R quitLive(@ApiParam("直播间ID") @PathVariable("liveId") String liveId) {
 
-        // TODO 【需要优化】寻找直播间，获取其分类ID，并将直播间人数增加
+        // TODO 【需要优化】退出直播间，获取其分类ID，并将直播间人数 【减少】
         LiveInfo liveInfo = (LiveInfo) redisTemplate.opsForHash().get(VodConstant.LIVE_CACHE_PREFIX + liveId, VodConstant.INFO);
 
         redisTemplate.opsForZSet().incrementScore(VodConstant.LIVE_CATEGORY_PREFIX + liveInfo.getCategoryId(), liveId, -1);
@@ -139,18 +119,43 @@ public class LiveInfoController {
         return R.ok();
     }
 
+    @ApiOperation("观看直播，获取直播间拉流地址")
+    @GetMapping("/live/{liveId}")
+    public R getLive(@ApiParam("直播间ID") @PathVariable("liveId") String liveId) {
+
+        // 获取直播间播流地址
+        List<String> filedList = new ArrayList<>();
+        filedList.add(VodConstant.RMTP);
+        filedList.add(VodConstant.M3U8);
+        filedList.add(VodConstant.FLV);
+        List list = redisTemplate.opsForHash().multiGet(VodConstant.LIVE_CACHE_PREFIX + liveId, filedList);
+
+        // TODO 【需要优化】寻找直播间，获取其分类ID，并将直播间人数 【增加】
+        LiveInfo liveInfo = (LiveInfo) redisTemplate.opsForHash().get(VodConstant.LIVE_CACHE_PREFIX + liveId, VodConstant.INFO);
+
+        redisTemplate.opsForZSet().incrementScore(VodConstant.LIVE_CATEGORY_PREFIX + liveInfo.getCategoryId(), liveId, 1);
+
+        return R.ok().data("pullUrl", list);
+    }
+
     @ApiOperation("直播间列表")
     @GetMapping("/list")
     public R showLives(@ApiParam("分类") @RequestParam("category") String category) {
         // 查询正在直播的直播间 按人气排名,并根据直播间Id查询直播间信息
-
-        if (StringUtils.isBlank(category)) {
+        System.out.println("category:" + "".equals(category) + "------------" + category);
+        List<LiveInfo> liveInfos = new ArrayList<>(16);
+        if ("".equals(category)) {
+            // 当没有选择分类时，获取总排名
             Set set = redisTemplate.opsForZSet().reverseRange(VodConstant.LIVE_RECOMMEND, 0, 15);
 
-            return R.ok().data("lives", set);
+            set.forEach(tid -> {
+                LiveInfo liveInfo = (LiveInfo) redisTemplate.opsForHash().get(VodConstant.LIVE_CACHE_PREFIX + tid, VodConstant.INFO);
+                liveInfos.add(liveInfo);
+            });
+
+            return R.ok().data("lives", liveInfos);
         } else {
             Set set = redisTemplate.opsForZSet().reverseRange(VodConstant.LIVE_CATEGORY_PREFIX + category, 0, 15);
-            List<LiveInfo> liveInfos = new ArrayList<>(16);
 
             set.forEach(tid -> {
                 LiveInfo liveInfo = (LiveInfo) redisTemplate.opsForHash().get(VodConstant.LIVE_CACHE_PREFIX + tid, VodConstant.INFO);

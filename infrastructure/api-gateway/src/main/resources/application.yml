@@ -16,9 +16,9 @@ spring:
           predicates:
             - Path=/*/ams/**
         - id: service-mms
-            uri: lb://service-mms
-            predicates:
-              - Path=/*/mms/**
+          uri: lb://service-mms
+          predicates:
+            - Path=/*/mms/**
         - id: service-oss
           uri: lb://service-oss
           predicates:

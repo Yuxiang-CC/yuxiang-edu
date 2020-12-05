@@ -41,10 +41,8 @@ public class CourseController {
 
     @ApiOperation("课程列表")
     @GetMapping("/list")
-    public R pageList(
-            @ApiParam(value = "查询对象", required = true)
-                    WebCourseQueryVO webCourseQueryVO
-    ) {
+    public R pageList(@ApiParam(value = "查询对象", required = true)
+                        WebCourseQueryVO webCourseQueryVO ) {
 
         List<Course> courseList = courseService.webSelectList(webCourseQueryVO);
 
@@ -53,28 +51,24 @@ public class CourseController {
 
     @ApiOperation("根据课程ID查询课程信息")
     @GetMapping("/inner/course-dto/{courseId}")
-    public CourseDTO getCourseDTOById(
-            @ApiParam(value = "课程ID", required = true)
-            @PathVariable("courseId") String courseId
-    ) {
+    public CourseDTO getCourseDTOById(@ApiParam(value = "课程ID", required = true)
+                                      @PathVariable("courseId") String courseId) {
 
         return courseService.getCourseDTOById(courseId);
 
     }
 
     @ApiOperation("课程信息")
-    @GetMapping("get/{id}")
-    public R courseInfo(
-            @ApiParam(value = "查询对象", required = true)
-            @PathVariable("id") String id
-    ) {
+    @GetMapping("/get/{id}")
+    public R courseInfo(@ApiParam(value = "查询对象", required = true)
+                        @PathVariable("id") String id) {
 
         WebCourseVO webCourseVOBy = courseService.getWebCourseVOById(id);
 
         // 获取视频章节列表
         List<ChapterVO> chapterVOList = chapterService.nestedListById(id);
 
-        return R.ok().data("course", webCourseVOBy).data("chapterVOList", chapterVOList);
+        return R.ok().data("course", webCourseVOBy).data("chapterList", chapterVOList);
     }
 
 

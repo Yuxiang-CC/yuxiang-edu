@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yuxiang.edu.service.base.dto.CourseDTO;
 import com.yuxiang.edu.service.core.entity.Course;
+import com.yuxiang.edu.service.core.entity.vo.CourseCollectVO;
 import com.yuxiang.edu.service.core.entity.vo.CoursePublishVO;
 import com.yuxiang.edu.service.core.entity.vo.CourseVO;
 import com.yuxiang.edu.service.core.entity.vo.WebCourseVO;
@@ -54,4 +55,10 @@ public interface CourseMapper extends BaseMapper<Course> {
     CoursePublishVO selectCoursePublishById(@Param("courseId") String courseId);
 
 
+    /**
+     * 获取会员收藏课程
+     * @param collects
+     * @return
+     */
+    List<CourseCollectVO> selectCourseCollectVOList(@Param("collects") List<String> collects);
 }

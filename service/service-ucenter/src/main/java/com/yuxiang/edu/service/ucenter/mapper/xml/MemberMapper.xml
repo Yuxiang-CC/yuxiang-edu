@@ -2,4 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yuxiang.edu.service.ucenter.mapper.MemberMapper">
 
+    <select id="selectMemberDTOById" resultType="com.yuxiang.edu.service.base.dto.MemberDTO">
+        select id,mobile,nickname
+        from ucenter_member
+        where id =  #{memberId}
+    </select>
+    <select id="selectMemberVOById" resultType="com.yuxiang.edu.service.ucenter.entity.vo.MemberVO">
+        select id,wx_openid,wb_openid,mobile,mail,nickname,sex,age,avatar
+        from ucenter_member
+        where id =  #{memberId}
+    </select>
 </mapper>

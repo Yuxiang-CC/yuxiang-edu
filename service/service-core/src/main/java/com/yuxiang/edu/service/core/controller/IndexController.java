@@ -30,7 +30,7 @@ public class IndexController {
     private TeacherService teacherService;
 
     @ApiOperation("课程和讲师的首页数据")
-    @GetMapping
+    @GetMapping("/hot")
     public R index(){
 
         //查询热门课程

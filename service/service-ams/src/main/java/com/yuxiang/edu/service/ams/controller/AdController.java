@@ -22,7 +22,6 @@ import java.util.List;
  * @author yuxiang
  * @since 2020-11-22
  */
-@CrossOrigin
 @Api(description = "广告推荐控制器")
 @RestController
 @RequestMapping("/api/ams/ad")

@@ -20,7 +20,7 @@ import java.util.List;
 public interface CourseService extends IService<Course> {
 
     /**
-     * 根据查询条件查询对象信息
+     * 根据查询条件查询对象信息 【前台前端界面】
      * @param webCourseQueryVO
      * @return
      */

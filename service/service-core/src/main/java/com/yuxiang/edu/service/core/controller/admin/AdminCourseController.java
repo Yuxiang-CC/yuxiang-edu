@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
  * @Author: yuxiang
  * @Date: 2020/11/22 10:27
  */
-@CrossOrigin
+
 @Api(description = "管理员课程控制类")
 @RestController
 @RequestMapping("/admin/core/course")

@@ -29,7 +29,7 @@ public class Member extends BaseEntity {
     private String wxOpenid;
 
     @ApiModelProperty(value = "阿里openid")
-    private String aliOpenid;
+    private String wbOpenid;
 
     @ApiModelProperty(value = "手机号")
     private String mobile;

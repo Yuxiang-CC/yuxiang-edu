@@ -12,8 +12,7 @@ import java.io.Serializable;
 public class LoginVO implements Serializable {
 
     private static final long serialVersionUID = 81675564181045596L;
-    private String mobile;
-    private String mail;
+    private String account;
     private String password;
 
 }

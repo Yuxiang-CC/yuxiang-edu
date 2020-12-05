@@ -12,10 +12,7 @@ import io.swagger.annotations.ApiParam;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.TimeUnit;
 
@@ -47,7 +44,7 @@ public class SmsController {
         String sixCode = RandomUtils.getSixBitRandom();
 
         // 3.发送验证码
-//        smsService.sendCode(phone, sixCode);
+        smsService.sendCode(phone, sixCode);
 
         // 4.存入数据库
         redisTemplate.opsForValue().set(UcenterConstant.LOGIN_PREFIX_KEY + phone, sixCode, 5, TimeUnit.MINUTES);
@@ -69,7 +66,7 @@ public class SmsController {
         String sixCode = RandomUtils.getSixBitRandom();
 
         // 3.发送验证码
-//        smsService.sendCode(phone, sixCode);
+        smsService.sendCode(phone, sixCode);
 
         // 4.存入数据库
         redisTemplate.opsForValue().set(UcenterConstant.REGISTRY_PREFIX_KEY + phone, sixCode, 5, TimeUnit.MINUTES);

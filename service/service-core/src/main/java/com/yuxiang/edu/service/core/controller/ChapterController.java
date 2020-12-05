@@ -19,7 +19,6 @@ import java.util.List;
  * @author yuxiang
  * @since 2020-11-19
  */
-@CrossOrigin
 @RestController
 @RequestMapping("/api/core/chapter")
 public class ChapterController {

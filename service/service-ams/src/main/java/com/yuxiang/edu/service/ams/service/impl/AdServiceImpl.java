@@ -12,6 +12,7 @@ import com.yuxiang.edu.service.ams.mapper.AdMapper;
 import com.yuxiang.edu.service.ams.service.AdService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,6 +37,7 @@ public class AdServiceImpl extends ServiceImpl<AdMapper, Ad> implements AdServic
      * @param adTypeId
      * @return
      */
+    @Cacheable(value = "hot:ad", key = "#adTypeId")
     @Override
     public List<Ad> selectByAdTypeId(String adTypeId) {
 

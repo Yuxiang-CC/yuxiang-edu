@@ -25,6 +25,9 @@ public class Comment extends BaseEntity {
 
     private static final long serialVersionUID=1L;
 
+    @ApiModelProperty(value = "回复的评论id")
+    private String parentId;
+
     @ApiModelProperty(value = "课程id")
     private String courseId;
 

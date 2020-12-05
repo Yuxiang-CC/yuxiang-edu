@@ -5,6 +5,7 @@ import com.alibaba.excel.support.ExcelTypeEnum;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yuxiang.edu.service.base.constant.VodConstant;
 import com.yuxiang.edu.service.vod.entity.LiveCategory;
+import com.yuxiang.edu.service.vod.entity.excel.DownLoadLiveCategorytData;
 import com.yuxiang.edu.service.vod.entity.excel.ExcelLiveCategoryData;
 import com.yuxiang.edu.service.vod.entity.vo.LiveCategoryVO;
 import com.yuxiang.edu.service.vod.listener.ExcelLiveCategoryListener;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * <p>
@@ -42,7 +44,7 @@ public class LiveCategoryServiceImpl extends ServiceImpl<LiveCategoryMapper, Liv
         List<LiveCategoryVO> liveCategoryVOS = new ArrayList<>(16);
         // 分类Id父类
         liveCategories.stream().forEach(liveCategory -> {
-            if (liveCategory.getParentId() != null && VodConstant.LIVA_CATEGORY_ONE_LEVEL.equals(liveCategory.getParentId())) {
+            if (liveCategory.getParentId() != null && VodConstant.LIVE_CATEGORY_ONE_LEVEL.equals(liveCategory.getParentId())) {
                 LiveCategoryVO liveVO = new LiveCategoryVO();
                 liveVO.setId(liveCategory.getId());
                 liveVO.setName(liveCategory.getName());
@@ -95,5 +97,34 @@ public class LiveCategoryServiceImpl extends ServiceImpl<LiveCategoryMapper, Liv
         EasyExcel.read(inputStream, ExcelLiveCategoryData.class, new ExcelLiveCategoryListener(baseMapper))
                 .excelType(ExcelTypeEnum.XLSX)
                 .sheet().doRead();
+    }
+
+    @Override
+    public List<DownLoadLiveCategorytData> getExportData() {
+        List<LiveCategory> subjects = baseMapper.selectList(null);
+        List<DownLoadLiveCategorytData> dataList = new ArrayList<>(16);
+
+        subjects.forEach(subject -> {
+            if ("0".equals(subject.getParentId())) {
+                AtomicBoolean blog = new AtomicBoolean(false);
+                subjects.forEach(s -> {
+                    if (s.getParentId().equals(subject.getId())) {
+                        DownLoadLiveCategorytData data = new DownLoadLiveCategorytData();
+                        data.setLevelOneTitle(subject.getName());
+                        data.setLevelTwoTitle(s.getName());
+                        dataList.add(data);
+                        blog.set(true);
+                    }
+                });
+
+                if (!blog.get()) {
+                    DownLoadLiveCategorytData data = new DownLoadLiveCategorytData();
+                    data.setLevelOneTitle(subject.getName());
+                    dataList.add(data);
+                }
+            }
+        });
+
+        return dataList;
     }
 }

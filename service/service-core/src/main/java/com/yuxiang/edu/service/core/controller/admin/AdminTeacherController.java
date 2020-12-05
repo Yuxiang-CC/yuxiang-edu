@@ -18,7 +18,7 @@ import java.util.Map;
  * @Author: yuxiang
  * @Date: 2020/11/20 10:40
  */
-@CrossOrigin
+
 @Api(description = "讲师管理控制器")
 @RestController
 @RequestMapping("/admin/core/teacher")

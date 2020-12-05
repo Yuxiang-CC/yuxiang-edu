@@ -50,7 +50,7 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
             }
             boolean isCheck = JWTUtils.checkJWT(token.get(0));
             // 令牌校验失败
-            if (isCheck) {
+            if (!isCheck) {
                 return out(response, ResultCodeEnum.TOKEN_EXPIRED);
             }
         }

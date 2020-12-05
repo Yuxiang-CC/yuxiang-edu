@@ -24,7 +24,7 @@ public class JWTUtils {
     // 令牌有效时间 （单位：小时）
     public static final Integer EXPIRATION_DATE = 1 << 6;
     // 请求头
-    public static final String REQUEST_HEADER = "Yuxiang-edu-Token";
+    public static final String REQUEST_HEADER = "Yuxiang-edu-token";
 
     public static void main(String[] args) {
 
@@ -38,11 +38,11 @@ public class JWTUtils {
         String decodeStr = Base64.decodeStr(encode);
         System.out.println(decodeStr);*/
 
-        String token = JWTUtils.genJwt("20184141091", "任金博", "");
+        String token = JWTUtils.genJwt("20184141091", "雨巷", "");
         System.out.println(token);
-
-        boolean s = JWTUtils.checkJWT(token);
-        System.out.println(s);
+//
+//        boolean s = JWTUtils.checkJWT("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJjZGJmMGNiMi1jNzhlLTQ2NzYtYjkxMC1mMWRmMmMyODY1MDQiLCJzdWIiOiJ5dXhpYW5nLWVkdSIsImlhdCI6MTYwNjE4NzQxMCwiZXhwIjoxNjA2NDE3ODEwLCJpZCI6IjEzMzA4NzI5NzAyODUwMTUwNDIiLCJuaWNrTmFtZSI6InZpcF8xcnoydDlyeGd0IiwiYXZhdGFyIjoiaHR0cHM6Ly95dXhpYW5nLWVkdS5vc3MtY24tcWluZ2Rhby5hbGl5dW5jcy5jb20vdWNlbnRlci8yMDIwLzExLzE3L2NjOWY4YjljY2UwMDRjNGE5ZWQ2ZGY1M2RiOWRiZDBhLnBuZyJ9.sH7-_QnLJUVxw1rEDldSs66TQpNBPyjs7C-cwdUkrDE");
+//        System.out.println(s);
 
 
 //        JwtParser parser = Jwts.parser();

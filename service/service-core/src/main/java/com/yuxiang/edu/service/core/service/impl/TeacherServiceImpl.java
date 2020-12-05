@@ -4,9 +4,11 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yuxiang.edu.common.result.R;
+import com.yuxiang.edu.service.core.entity.Course;
 import com.yuxiang.edu.service.core.entity.Teacher;
 import com.yuxiang.edu.service.core.entity.vo.TeacherQueryVO;
 import com.yuxiang.edu.service.core.feign.OssFileService;
+import com.yuxiang.edu.service.core.mapper.CourseMapper;
 import com.yuxiang.edu.service.core.mapper.TeacherMapper;
 import com.yuxiang.edu.service.core.service.TeacherService;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,6 +35,9 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> impl
 
     @Autowired
     private OssFileService ossFileService;
+
+    @Autowired
+    private CourseMapper courseMapper;
 
     @Override
     public boolean removeAvatarById(String id) {
@@ -92,7 +98,7 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> impl
         return maps;
     }
 
-    @Cacheable(value = "hot", key = "'teacher'")
+    @Cacheable(value = "hot:index", key = "'teacher'")
     @Override
     public List<Teacher> selectHotTeacher() {
         QueryWrapper<Teacher> queryWrapper = new QueryWrapper<>();
@@ -100,5 +106,24 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> impl
         queryWrapper.last("limit 4");
 
         return baseMapper.selectList(queryWrapper);
+    }
+
+    @Override
+    public Map<String, Object> selectTeacherInfoById(String id) {
+        Teacher teacher = baseMapper.selectById(id);
+
+        if (teacher == null) {
+            return null;
+        }
+        // 查询讲师发表的课程
+        QueryWrapper<Course> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("teacher_id", id);
+        List<Course> courses = courseMapper.selectList(queryWrapper);
+
+        Map<String, Object> maps = new HashMap<>(8);
+        maps.put("teacher", teacher);
+        maps.put("courseList", courses);
+
+        return maps;
     }
 }
