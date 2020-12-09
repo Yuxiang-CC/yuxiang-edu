@@ -38,7 +38,7 @@ public class JWTUtils {
         String decodeStr = Base64.decodeStr(encode);
         System.out.println(decodeStr);*/
 
-        String token = JWTUtils.genJwt("20184141091", "雨巷", "");
+        String token = JWTUtils.genJwt("1334103155167727618", "周杰伦", "https://yuxiang-edu.oss-cn-qingdao.aliyuncs.com/teacher/2020/12/02/09999d553e9041eea66d9e80b4b1d8f9.jpg");
         System.out.println(token);
 //
 //        boolean s = JWTUtils.checkJWT("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJjZGJmMGNiMi1jNzhlLTQ2NzYtYjkxMC1mMWRmMmMyODY1MDQiLCJzdWIiOiJ5dXhpYW5nLWVkdSIsImlhdCI6MTYwNjE4NzQxMCwiZXhwIjoxNjA2NDE3ODEwLCJpZCI6IjEzMzA4NzI5NzAyODUwMTUwNDIiLCJuaWNrTmFtZSI6InZpcF8xcnoydDlyeGd0IiwiYXZhdGFyIjoiaHR0cHM6Ly95dXhpYW5nLWVkdS5vc3MtY24tcWluZ2Rhby5hbGl5dW5jcy5jb20vdWNlbnRlci8yMDIwLzExLzE3L2NjOWY4YjljY2UwMDRjNGE5ZWQ2ZGY1M2RiOWRiZDBhLnBuZyJ9.sH7-_QnLJUVxw1rEDldSs66TQpNBPyjs7C-cwdUkrDE");

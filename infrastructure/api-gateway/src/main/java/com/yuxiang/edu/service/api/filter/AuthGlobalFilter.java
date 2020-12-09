@@ -34,6 +34,7 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
         ServerHttpRequest request = exchange.getRequest();
         ServerHttpResponse response = exchange.getResponse();
 
+        // TODO 是否设置为静态
         AntPathMatcher antPathMatcher = new AntPathMatcher();
         // 判断路径中 存在 /api/**/auth/** 的需要鉴权
         URI uri = request.getURI();
@@ -53,6 +54,8 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
             if (!isCheck) {
                 return out(response, ResultCodeEnum.TOKEN_EXPIRED);
             }
+        } else if (antPathMatcher.match(ApiGatewayConstant.ADMIN_URL, path)) {
+            // TODO 判断是否有管理员权限
         }
 
         return chain.filter(exchange);
@@ -77,12 +80,12 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
     }
 
     /**
-     *  优先级，数越少优先级越高
+     *  优先级，数越小优先级越高
      * @return
      */
     @Override
     public int getOrder() {
-        return 0;
+        return 1;
     }
 
 

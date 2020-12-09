@@ -33,5 +33,10 @@ public class UcenterConstant {
      */
     public static final String LOGIN_PREFIX_KEY = "ucenter:login:";
 
+    /**
+     * 用户默认头像
+     */
+    public static final String USER_AVATAR = "https://yuxiang-edu.oss-cn-qingdao.aliyuncs.com/ucenter/2020/11/17/cc9f8b9cce004c4a9ed6df53db9dbd0a.png";
+
 
 }

@@ -50,7 +50,7 @@ service-oss：文件对象操作
 service-vod：视频点播操作，视频直播操作
 service-statistice：统计用户注册，统计信息Excel导出
 service-mms：直播聊天室
-service-trade：创建订单，支付宝【沙箱】支付
+service-trade：订单操作，支付宝【沙箱】支付
 
 api-gateway：统一URL鉴权
 

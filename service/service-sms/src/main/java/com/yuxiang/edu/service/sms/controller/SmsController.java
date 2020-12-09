@@ -87,7 +87,7 @@ public class SmsController {
         String sixCode = RandomUtils.getSixBitRandom();
 
         // 3.发送验证码
-//        smsService.sendMail(mail, sixCode);
+        smsService.sendMail(mail, sixCode);
 
         // 4.存入数据库
         redisTemplate.opsForValue().set(UcenterConstant.REGISTRY_PREFIX_KEY + mail, sixCode, 5, TimeUnit.MINUTES);

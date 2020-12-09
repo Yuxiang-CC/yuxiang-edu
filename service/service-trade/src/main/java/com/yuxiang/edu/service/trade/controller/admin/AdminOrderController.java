@@ -9,11 +9,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Author: yuxiang
@@ -35,11 +33,23 @@ public class AdminOrderController {
                       @ApiParam(value = "页面大小", required = true) @PathVariable("size") Long size,
                       @ApiParam("讲师列表查询对象") OrderQueryVO orderQueryVO) {
 
-
         Page<Order> pageParam = new Page<>(page, size);
         Page<Order> pageModelList = orderService.selectPage(pageParam, orderQueryVO);
 
         return R.ok().data("rows", pageModelList.getRecords())
                 .data("total", pageModelList.getTotal());
+    }
+
+    @ApiOperation("根据订单ID获取订单信息")
+    @ResponseBody
+    @GetMapping("/info/{orderId}")
+    public R get(@ApiParam("订单ID") @PathVariable("orderId") String orderId) {
+
+        if (StringUtils.isBlank(orderId)) {
+            return R.ok().data("item", null);
+        }
+
+        Order order = orderService.getById(orderId);
+        return R.ok().data("item", order);
     }
 }

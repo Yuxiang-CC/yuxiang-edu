@@ -85,7 +85,7 @@ public class SmsServiceImpl implements SmsService {
             helper.setText("<div style=\"background-color:#f7f7f7;padding-top:30px;padding-bottom:30px;\"> \n" +
                     "　<table cellpadding=\"0\" cellspacing=\"0\" style=\"margin: auto;background-color:white;font-family:PingFangSC,&quot;Microsoft Yahei&quot;,&quot;Heiti SC&quot;,sans-serif ;border-radius:8px;overflow:hidden;\">\n" +
                     "<tbody><tr style=\"width:500px;height:100px;background: #58bb85;\">\n" +
-                    " <th style=\"width:500px;\"><img src=\"https://yuxiang-blog.oss-cn-beijing.aliyuncs.com/yuxiang.png\" alt=\"雨巷\" width:=\"\" height:=\"\"></th>\n" +
+                    " <th style=\"width:500px;\"><img src=\"https://yuxiang-edu.oss-cn-qingdao.aliyuncs.com/yuxiang.png\" alt=\"雨巷\" width=\"250px\" height=\"100px\"></th>\n" +
                     "</tr>\n" +
                     " <tr style=\"width:500px;height:60px;\"><td><h2 style=\"color:#555555;margin-left:36px;margin-top:34px;\">亲爱的用户 ,</h2></td>\n" +
                     "</tr>\n" +

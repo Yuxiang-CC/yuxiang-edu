@@ -44,13 +44,24 @@ import java.util.HashMap;
 @RequestMapping("/api/ucenter/member")
 public class MemberController {
 
-    private static final String RETURN_URL = "http://n2xjhx.natappfree.cc/api/ucenter/member/weibo/return";
+    /**
+     * 微博登录授权回调地址
+     */
+    private static final String RETURN_URL = "http://9gjcpu.natappfree.cc/api/ucenter/member/weibo/return";
 
     @Autowired
     private WeiboProperties weiboProperties;
 
     @Autowired
     private MemberService memberService;
+
+    @ApiOperation("测试访问")
+    @ResponseBody
+    @GetMapping("/test")
+    public R test() {
+
+        return R.ok().message("测试访问");
+    }
 
     @ResponseBody
     @ApiOperation("手机验证码登录")
@@ -223,6 +234,7 @@ public class MemberController {
 
         return R.ok().data("returnUrl", "");
     }
+
 
 }
 

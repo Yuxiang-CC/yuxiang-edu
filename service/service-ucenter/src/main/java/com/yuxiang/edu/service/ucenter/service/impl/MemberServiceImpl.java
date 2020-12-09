@@ -62,6 +62,7 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
                         mobileMember.setMobile(registerVO.getAccount());
                         mobileMember.setNickname(registerVO.getNickName());
                         mobileMember.setPassword(EncryptionUtils.encodePassword(registerVO.getPassword()));
+                        mobileMember.setAvatar(UcenterConstant.USER_AVATAR);
                         baseMapper.insert(mobileMember);
                         return;
                     }
@@ -89,6 +90,7 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
                         mailMember.setMail(registerVO.getAccount());
                         mailMember.setNickname(registerVO.getNickName());
                         mailMember.setPassword(EncryptionUtils.encodePassword(registerVO.getPassword()));
+                        mailMember.setAvatar(UcenterConstant.USER_AVATAR);
                         baseMapper.insert(mailMember);
                         return;
                     }
@@ -155,6 +157,7 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
                         member.setMobile(loginVO.getAccount());
                         member.setNickname(NicknameUtils.getNickname());
                         member.setPassword(EncryptionUtils.encodePassword(loginVO.getAccount()));
+                        member.setAvatar(UcenterConstant.USER_AVATAR);
                         baseMapper.insert(member);
                         return generateToken(member);
                     } else {
@@ -184,16 +187,21 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
         QueryWrapper<Member> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("wb_openid", (String) id);
         Member member = baseMapper.selectOne(queryWrapper);
+        // 如果之前为登录过，则直接保存否则更新用户关键数据
         if (member == null) {
             member = new Member();
             member.setWbOpenid((String)id);
             member.setNickname((String)name);
             member.setAvatar((String) avatarLarge);
-            int insert = baseMapper.insert(member);
-            if (insert >= 0) {
+            int result = baseMapper.insert(member);
+            if (result >= 0) {
                 // 生成Token返回
                 return generateToken(member);
             }
+        } else {
+            member.setNickname((String)name);
+            member.setAvatar((String) avatarLarge);
+            baseMapper.update(member, queryWrapper);
         }
 
         // 生成Token返回
