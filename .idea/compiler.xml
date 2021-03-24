@@ -7,18 +7,20 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="common-util" />
         <module name="service-ams" />
+        <module name="common-util" />
+        <module name="service-statistics" />
+        <module name="spring-security" />
         <module name="service-vod" />
+        <module name="service-mms" />
         <module name="service-oss" />
-        <module name="api-gateway" />
-        <module name="service-trade" />
-        <module name="service-base" />
         <module name="service-ucenter" />
         <module name="service-sms" />
+        <module name="service-acl" />
+        <module name="service-base" />
         <module name="service-core" />
-        <module name="service-mms" />
-        <module name="service-statistics" />
+        <module name="api-gateway" />
+        <module name="service-trade" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -29,6 +31,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="api-gateway" options="-parameters" />
       <module name="common-util" options="-parameters" />
+      <module name="service-acl" options="-parameters" />
       <module name="service-ams" options="-parameters" />
       <module name="service-base" options="-parameters" />
       <module name="service-core" options="-parameters" />
@@ -40,6 +43,7 @@
       <module name="service-trade" options="-parameters" />
       <module name="service-ucenter" options="-parameters" />
       <module name="service-vod" options="-parameters" />
+      <module name="spring-security" options="-parameters" />
     </option>
   </component>
 </project>

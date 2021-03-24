@@ -7,6 +7,7 @@ import com.yuxiang.edu.common.util.JWTUtils;
 import com.yuxiang.edu.common.util.JwtInfo;
 import com.yuxiang.edu.service.base.exception.RException;
 import com.yuxiang.edu.service.trade.entity.Order;
+import com.yuxiang.edu.service.trade.feign.CoreCourseService;
 import com.yuxiang.edu.service.trade.service.OrderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -35,6 +36,10 @@ public class OrderController {
 
     @Autowired
     private OrderService orderService;
+
+
+    @Autowired
+    private CoreCourseService coreCourseService;
 
 
     @ApiOperation("新增订单")
@@ -97,6 +102,15 @@ public class OrderController {
             return R.error().message("数据不存在");
         }
 
+    }
+
+
+    @ApiOperation("链路调用测试")
+    @GetMapping("/sleuth/{param}")
+    public R testSleuth(@PathVariable("param") String param) {
+
+        System.out.println("链路调用开始。。。。" + param);
+        return coreCourseService.testSleuth();
     }
 
 

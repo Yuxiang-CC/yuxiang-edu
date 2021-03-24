@@ -1,0 +1,24 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: service-acl
+  cloud:
+    nacos:
+      server-addr: 182.92.227.211:8848
+      discovery:
+        namespace: 9e15a66b-a196-4dfa-9a29-0ef71479613c
+        username: yuxiang
+        password: yuxiang
+        group: service
+      config:
+        file-extension: yml
+        namespace: 9e15a66b-a196-4dfa-9a29-0ef71479613c
+        username: yuxiang
+        password: yuxiang
+        group: service
+        context-path: /nacos
+#    sentinel:
+#      transport:
+#        port: 9780 # 跟控制台交流的端口，可随意指定未使用端口号
+#        dashboard: 182.92.227.211:8080 # 指定sentinel控制台服务的地址
