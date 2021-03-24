@@ -1,5 +1,6 @@
 package com.yuxiang.edu.service.trade.feign;
 
+import com.yuxiang.edu.common.result.R;
 import com.yuxiang.edu.service.base.dto.CourseDTO;
 import com.yuxiang.edu.service.trade.feign.callbak.CoreCourseServiceCallback;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -15,4 +16,7 @@ public interface CoreCourseService {
 
     @GetMapping("/api/core/course/inner/course-dto/{courseId}")
     CourseDTO getCourseDTOById(@PathVariable("courseId") String courseId);
+
+    @GetMapping("/api/core/index/test")
+    R testSleuth();
 }

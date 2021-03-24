@@ -18,3 +18,12 @@ spring:
         password: yuxiang
         group: service
         context-path: /nacos
+#    sentinel:
+#      transport:
+#        port: 9720 # 跟控制台交流的端口，可随意指定未使用端口号
+#        dashboard: 182.92.227.211:8080 # 指定sentinel控制台服务的地址
+
+# 远程调用
+feign:
+  sentinel:
+    enabled: true

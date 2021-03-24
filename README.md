@@ -37,19 +37,29 @@
         * 功能：用户注册，用户登录，颁发Token，Token信息解码
     * service-vod           `视频点播服务` port=9690
         * 功能：阿里云VOD视频点播，讲师可以进行直播
+    * service-acl           `权限控制服务` port=9680
+        * 功能：管理员、角色、菜单管理
 
     
     
 ## 已开发功能
 
 service-ams：广告分类操作，广告操作
+
 service-core：核心功能操作
+
 service-ucenter：用户注册，用户登录，颁发Token，Token信息解码，微博第三方登录
+
 service-sms：手机验证码发送，邮件验证码发送
+
 service-oss：文件对象操作
+
 service-vod：视频点播操作，视频直播操作
+
 service-statistice：统计用户注册，统计信息Excel导出
+
 service-mms：直播聊天室
+
 service-trade：订单操作，支付宝【沙箱】支付
 
 api-gateway：统一URL鉴权

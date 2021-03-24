@@ -39,7 +39,7 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
         // 判断路径中 存在 /api/**/auth/** 的需要鉴权
         URI uri = request.getURI();
         String path = uri.getPath();
-        System.out.println("path:" + path);
+        System.out.println("path:" + path + ",method:" + request.getMethodValue());
         // 判断该路径是否需要鉴权
         if (antPathMatcher.match(ApiGatewayConstant.WEB_AUTH_URL, path)) {
             // 获取token
