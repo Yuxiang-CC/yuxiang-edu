@@ -5,7 +5,7 @@
 ![版本](./image/001.png)
 
 
-### 注意：运行项目需要联网，需要将服务注册到Nacos注册中心上，已经关键配置需要从Nacos上获取。
+### 注意：运行项目需要联网，需要将服务注册到Nacos注册中心上，以及关键配置需要从Nacos上获取。
 
 * Spring Boot          ==> 2.2.11.RELEASE
 * Spring Cloud         ==> Hoxton.SR5
@@ -16,6 +16,7 @@
 * **common 通用模块**
     * common-util `通用包`
     * service-base `服务基础模块，所有服务都需引入`
+    * spring-security 
 * **infrastructure 基础设施**
     * api-gateway `网关服务`    port=9600
 * **service 服务模块**
