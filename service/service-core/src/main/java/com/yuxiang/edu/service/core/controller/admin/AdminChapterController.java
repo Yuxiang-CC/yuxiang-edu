@@ -1,5 +1,6 @@
 package com.yuxiang.edu.service.core.controller.admin;
 
+import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import com.yuxiang.edu.common.result.R;
 import com.yuxiang.edu.service.core.entity.Chapter;
 import com.yuxiang.edu.service.core.service.ChapterService;
@@ -29,9 +30,9 @@ public class AdminChapterController {
     private VideoService videoService;
 
     @ApiOperation("新增章节")
+    @ApiOperationSupport(ignoreParameters = {"chapter.id"})
     @PostMapping("/save")
-    public R save(@ApiParam(value = "章节对象", required = true)
-                  @RequestBody Chapter chapter) {
+    public R save(@RequestBody Chapter chapter) {
 
         boolean result = chapterService.save(chapter);
 
